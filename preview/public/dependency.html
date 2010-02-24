@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src='/javascript/jquery.js'></script>
+    <script src='/javascript/dependency.js'></script>
+    <script>
+    
+        /*
+          register a dependency on the list
+          set up a dependency set which is a collection of requires that must be satisfied before executing the code
+          on dep satisfied, execute code into the page.        
+        */
+        var widgets = {};         
+        $p = {
+          start: function(){ this._start = new Date(); },
+          ping: function(){ return (new Date() - $p._start)}
+        }
+        $p.start();       
+        // $d.require("dep.level1");
+
+        
+    </script>
+  </head>
+  <body>
+    <script>
+      // once specific code and the dom have loaded, execute
+      $d.codeDomReady("dep.level1",function(){ 
+          widgets.something.asd.a();
+      });      
+      
+      // pure jquery understanding of when the document is ready. 
+      // shows that the requires are non-blocking
+      $(document).ready(function(){
+        document.body.innerHTML += "<br/> ||="+$p.ping();
+      });
+    </script>
+  </body>
+</html>
